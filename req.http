@@ -1,0 +1,162 @@
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "khushal",
+  "email": "khushal@gmail.com",
+  "password": "123456"
+}
+
+
+###login
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "name":"khushal",
+    "email":"khushal@gmail.com",
+    "password":"123456"
+}
+ 
+###logout
+
+POST http://localhost:5000/api/auth/logout
+
+
+###protected route
+GET http://localhost:5000/api/auth/protected
+
+
+
+###get boards(default if not created
+
+GET http://localhost:5000/api/boards
+cookie: token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmMzNTAwZGQ4MzQ2NDkyYWUzYjc1OSIsImlhdCI6MTc3ODEzNjM1NSwiZXhwIjoxNzc4MjIyNzU1fQ.oipast2GsB0_FRWM_7Fn2lLKb8qjM2FyuZpev4OZp6I"
+
+###create board
+POST http://localhost:5000/api/boards
+Content-Type: application/json
+
+{
+  "title":"Test2"
+}
+###
+GET http://localhost:5000/api/auth/protected
+
+###//get signle board
+get http://localhost:5000/api/boards/69fc48b80cbb18f476786f43
+cookie: token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmMzNTAwZGQ4MzQ2NDkyYWUzYjc1OSIsImlhdCI6MTc3ODE0MDExNSwiZXhwIjoxNzc4MjI2NTE1fQ.r9v-7W8kA761ZB5T-V9IW_Q5DaSRSSS-ljfC2jLcAX4"
+
+###delete board
+
+DELETE  http://localhost:5000/api/boards/69fc48b80cbb18f476786f43
+cookie: token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmMzNTAwZGQ4MzQ2NDkyYWUzYjc1OSIsImlhdCI6MTc3ODE0MDExNSwiZXhwIjoxNzc4MjI2NTE1fQ.r9v-7W8kA761ZB5T-V9IW_Q5DaSRSSS-ljfC2jLcAX4"
+
+
+###create list
+POST http://localhost:5000/api/lists
+content-Type: application/json
+
+{
+  "title":"khushal Testing",
+  "boardId":"69fc488c0cbb18f476786f3c"
+}
+
+###get boards list
+GET http://localhost:5000/api/lists/69fc488c0cbb18f476786f3c
+
+###update list
+PUT  http://localhost:5000/api/lists/69fc491f0cbb18f476786f48
+content-Type: application/json
+
+{
+   "title":"Updated List"
+}
+
+###delete list
+DELETE http://localhost:5000/api/lists/69fc491f0cbb18f476786f48
+
+###reorder lists
+PUT http://localhost:5000/api/lists/reorder/all
+content-Type: application/json
+
+{
+  "lists":[
+    {
+      "id":"69fc491f0cbb18f476786f49",
+      "order":1
+    },
+    {
+      "id":"69fc493d0cbb18f476786f4b",
+      "order":2
+    }
+  ]
+}
+
+###create card
+POST http://localhost:5000/api/cards
+Content-Type: application/json
+Cookie: token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmMzNTAwZGQ4MzQ2NDkyYWUzYjc1OSIsImlhdCI6MTc3ODE0MDExNSwiZXhwIjoxNzc4MjI2NTE1fQ.r9v-7W8kA761ZB5T-V9IW_Q5DaSRSSS-ljfC2jLcAX4"
+
+
+
+
+{
+  "title":"eat",
+  "description":"w team",
+  "listId":"69fc491f0cbb18f476786f49",
+  "boardId":"69fc491f0cbb18f476786f47",
+  "status":"ongoing"
+}
+
+###get board cards
+GET http://localhost:5000/api/cards/board/69fc491f0cbb18f476786f47
+
+###get list cards
+GET http://localhost:5000/api/cards/list/69fc491f0cbb18f476786f49
+
+###update card
+PUT http://localhost:5000/api/cards/69fc4a4a0cbb18f476786f4d
+Content-Type: application/json
+
+{
+   "title":"Updated Card",
+  "status":"done"
+}
+
+###delete card
+DELETE http://localhost:5000/api/cards/69fc4a4a0cbb18f476786f4d
+
+###move card
+PUT http://localhost:5000/api/cards/move/69fc4a180cbb18f476786f4c
+Content-Type: application/json
+
+{
+   "newListId":"69fc491f0cbb18f476786f4a",
+   "newOrder":1
+}
+
+
+###reorder cards
+PUT http://localhost:5000/api/cards/reorder/all
+Content-Type: application/json
+
+{
+  "cards":[
+    {
+      "id":"69fc4b370cbb18f476786f4e",
+      "order":2
+    },
+    {
+      "id":"69fc4b6c0cbb18f476786f4f",
+      "order":1
+    }
+  ]
+}
+
+###
+
+
+###get activity
+GET http://localhost:5000/api/activity/69fc488c0cbb18f476786f3c
